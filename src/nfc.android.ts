@@ -466,11 +466,14 @@ export class Nfc implements NfcApi {
           android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP |
             android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
         );
+        
+        // DONT USE FLAG_IMMUTABLE Here for Pending Intent
+        // Adding 33554432 = FLAG_MUTABLE for Mutable Intent 
         this.pendingIntent = android.app.PendingIntent.getActivity(
           activity,
           0,
           this.intent,
-          0
+          33554432
         );
 
         // The adapter must be started with the foreground activity.
